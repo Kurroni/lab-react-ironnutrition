@@ -18,6 +18,7 @@ class AddFood extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.addOneFood(this.state);
+        console.log(this.state)
         this.setState({
         name: "",
         calories: 0,

@@ -7,7 +7,7 @@ import AddFood from './components/AddFood'
 
 class App extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       foods: foods,
       showForm: false
@@ -19,8 +19,13 @@ class App extends Component {
   }
 
   addFood = (foodObj) => {
-    const foods = [ foodObj, ...this.state.foods];
-    this.setState({foods});
+    const newFoods = [ foodObj, ...this.state.foods];
+    console.log('neeewwwwwwwfffoods',newFoods);
+    
+    this.setState({
+      foods: newFoods
+    });
+    console.log(this.state.foods);
   }
 
   
@@ -31,13 +36,16 @@ class App extends Component {
       
       <button onClick={this.toggleForm}>Add food</button>
       <div>
-      {this.state.showForm ? <AddFood addOneFood={this.addFood}/> : null}
+      {this.state.showForm ?
+      <AddFood addOneFood={this.addFood}/>
+      :
+      null}
       </div>
-        { 
-          foods.map( (food, index) => {
-          return <FoodBox key={index} {...food}/>
-          })
-        }
+      { 
+        this.state.foods.map( (food, index) => {
+        return <FoodBox key={index} {...food}/>
+        })
+      }
       </div>
     )
   };
